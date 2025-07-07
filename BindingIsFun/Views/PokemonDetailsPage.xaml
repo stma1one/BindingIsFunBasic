@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BindingIsFun.Views.PokemonDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Grid Margin="0,10" RowDefinitions="*,*,*,*">
+
+        <Border StrokeShape="{OnPlatform RoundRectangle 60, WinUI=RoundRectangle 40}" StrokeThickness="0">
+            <Image Aspect="AspectFill" Source="pokemon.png" />
+        </Border>
+
+        <Border
+            BackgroundColor="Wheat"
+            HeightRequest="{OnIdiom 110,
+                                    Tablet=120}"
+            StrokeShape="RoundRectangle 60"
+            StrokeThickness="3"
+            WidthRequest="{OnIdiom Default=110,
+                                   Tablet=120}">
+            <Image
+                Aspect="AspectFit"
+                HeightRequest="110"
+                Source="{Binding Source={x:RelativeSource Self}, Path=BindingContext, TargetNullValue='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Question_mark.svg/585px-Question_mark.svg.png'}"
+                WidthRequest="110" />
+        </Border>
+
+        <Label
+            Grid.Row="1"
+            Margin="0,-190,0,0"
+            BackgroundColor="White"
+            FontSize="25"
+            HeightRequest="63"
+            HorizontalTextAlignment="Center"
+            Text="שם פוקימון"
+            TextColor="Chocolate"
+            WidthRequest="150" />
+
+
+
+        <!--<FlexLayout Margin="15"
+                    Grid.Row="2"
+                    Wrap="Wrap"
+                    JustifyContent="SpaceBetween"
+                    AlignItems="Center"
+                    Direction="Row">
+            <Label VerticalOptions="Center"
+                   FlexLayout.Basis="25%"
+                   Margin="5"
+                   Text=":סוג"
+                   TextColor="Red"
+                   FontSize="Large" />
+            <Label FlexLayout.Basis="25%"
+                   VerticalOptions="Center"
+                   Text="{Binding Type}"
+                   FontSize="Large" />
+            <Label Grid.Column="2"
+                   VerticalOptions="Center"
+                   Margin="5"
+                   Text=":נקודות פגיעה"
+                   TextColor="Red"
+                   FontSize="Large" />
+            <Label VerticalOptions="Center"
+                   Text="{Binding Hitpoints}"
+                   FontSize="Large" />
+
+            <Label VerticalOptions="Center"
+                   Text=":מיקום"
+                   TextColor="Red"
+                   FontSize="Large" />
+            <Label VerticalOptions="Center"
+                   Text="{Binding Location}"
+                   FontSize="Large" />
+        </FlexLayout>-->
+        <Grid
+            Grid.Row="2"
+            Margin="-100"
+            ColumnDefinitions="auto,auto,auto,auto"
+            HorizontalOptions="Center"
+            RowDefinitions="auto,auto">
+            <Label
+                Margin="5"
+                FontSize="Large"
+                Text=":סוג"
+                TextColor="Red"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Column="1"
+                FontSize="Large"
+                Text="סוג"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Column="2"
+                Margin="5"
+                FontSize="Large"
+                Text=":נקודות פגיעה"
+                TextColor="Red"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Column="3"
+                FontSize="Large"
+                Text="נקודות פגיעה"
+                VerticalOptions="Center" />
+
+            <Label
+                Grid.Row="1"
+                FontSize="Large"
+                Text=":מיקום"
+                TextColor="Red"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                FontSize="Large"
+                Text="מיקום"
+                VerticalOptions="Center" />
+        </Grid>
+        <Button
+            Grid.Row="3"
+            Clicked="Button_Clicked"
+            CornerRadius="40"
+            FontSize="25"
+            HeightRequest="80"
+            Text="עדכן תמונה"
+            WidthRequest="150" />
+
+    </Grid>
+</ContentPage>

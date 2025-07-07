@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BindingIsFun.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ScrollView>
+
+        <VerticalStackLayout Margin="15">
+            <!--  הטקסט והתמונה  -->
+            <VerticalStackLayout
+                Margin="15,55"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+
+
+
+                <Label
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    Rotation="0"
+                    Scale="0"
+                    Text="קשה יש רק בלחם"
+                    VerticalOptions="Center" />
+
+                <Image
+                    x:Name="botImg"
+                    Aspect="AspectFit"
+                    HeightRequest="{OnPlatform WinUI=300}"
+                    Opacity="100"
+                    Source="dotnet_bot.png"
+                    WidthRequest="{OnPlatform WinUI=300}" />
+
+
+            </VerticalStackLayout>
+            <!--  Grid 3*2 first column is name second is the slider  -->
+            <Grid ColumnDefinitions="*,4*" RowDefinitions="*,*,*">
+                <!--  Scale Slider  -->
+                <Label
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="הגדלה" />
+                <!--  Scale Slider  -->
+
+                <Label
+                    Grid.Column="1"
+                    Margin="0,15,0,0"
+                    Padding="10"
+                    HorizontalTextAlignment="Center"
+                    Text="ערך הגדלה" />
+
+
+                <!--  Rotation Slider  -->
+                <Label
+                    Grid.Row="1"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="סיבוב" />
+                <!--  rotation Slider Grid row 1  -->
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0,15,0,0"
+                    Padding="10"
+                    HorizontalTextAlignment="Center"
+                    Text="זוית סיבוב" />
+
+                <!--  Opacity Slider  -->
+                <Label
+                    Grid.Row="2"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="שקיפות" />
+                <!--  opacity slider Grid Row 2  -->
+
+                <!--  String format https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-numeric-format-strings  -->
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="0,15,0,0"
+                    Padding="10"
+                    HorizontalTextAlignment="Center"
+                    Text="אחוז שקיפות" />
+
+            </Grid>
+
+            <Button
+                Clicked="OpacityChangeOnClick"
+                Text="שנה שקיפות"
+                WidthRequest="{OnIdiom Tablet=300}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
