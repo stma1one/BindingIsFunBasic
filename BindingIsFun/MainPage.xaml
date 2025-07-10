@@ -2,7 +2,8 @@
 <ContentPage
     x:Class="BindingIsFun.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    FlowDirection="RightToLeft">
 
     <ScrollView>
 
@@ -10,24 +11,26 @@
             <!--  הטקסט והתמונה  -->
             <VerticalStackLayout
                 Margin="15,55"
+                BindingContext="{x:Reference scaleSlider}"
                 HorizontalOptions="Center"
                 VerticalOptions="Center">
-
 
 
                 <Label
                     FontSize="Large"
                     HorizontalOptions="Center"
-                    Rotation="0"
-                    Scale="1"
+                    Rotation="{Binding Value, Source={x:Reference rotationSlider}}"
+                    Scale="{Binding Value, Source={x:Reference scaleSlider}}"
                     Text="קשה יש רק בלחם"
                     VerticalOptions="Center" />
+
 
                 <Image
                     x:Name="botImg"
                     Aspect="AspectFit"
                     HeightRequest="{OnPlatform WinUI=300}"
-                    Opacity="100"
+                    Opacity="{Binding Value, Source={x:Reference opacitySlider}}"
+                    Scale="{Binding Value}"
                     Source="dotnet_bot.png"
                     WidthRequest="{OnPlatform WinUI=300}" />
 
@@ -41,13 +44,22 @@
                     HorizontalTextAlignment="Center"
                     Text="הגדלה" />
                 <!--  Scale Slider  -->
+                <Slider
+                    x:Name="scaleSlider"
+                    Grid.Column="1"
+                    Maximum="5"
+                    MaximumTrackColor="#F01616"
+                    Minimum="0"
+                    MinimumTrackColor="#78EE10"
+                    Value="1" />
 
                 <Label
                     Grid.Column="1"
                     Margin="0,15,0,0"
                     Padding="10"
+                    BindingContext="{x:Reference scaleSlider}"
                     HorizontalTextAlignment="Center"
-                    Text="ערך הגדלה" />
+                    Text="{Binding Value, StringFormat='{0:F1}'}" />
 
 
                 <!--  Rotation Slider  -->
@@ -58,13 +70,22 @@
                     Text="סיבוב" />
                 <!--  rotation Slider Grid row 1  -->
 
+                <Slider
+                    x:Name="rotationSlider"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Maximum="360"
+                    Minimum="0"
+                    ThumbImageSource="slider.png"
+                    Value="0" />
+
                 <Label
                     Grid.Row="1"
                     Grid.Column="1"
                     Margin="0,15,0,0"
                     Padding="10"
                     HorizontalTextAlignment="Center"
-                    Text="זוית סיבוב" />
+                    Text="{Binding Value, Source={x:Reference rotationSlider}, StringFormat='{0:F0}'}" />
 
                 <!--  Opacity Slider  -->
                 <Label
@@ -73,6 +94,13 @@
                     HorizontalTextAlignment="Center"
                     Text="שקיפות" />
                 <!--  opacity slider Grid Row 2  -->
+                <Slider
+                    x:Name="opacitySlider"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Maximum="1"
+                    Minimum="0"
+                    Value="1" />
 
                 <!--  String format https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-numeric-format-strings  -->
                 <Label
@@ -81,7 +109,7 @@
                     Margin="0,15,0,0"
                     Padding="10"
                     HorizontalTextAlignment="Center"
-                    Text="אחוז שקיפות" />
+                    Text="{Binding Value, Source={x:Reference opacitySlider}, StringFormat='{0:0.#%}'}" />
 
             </Grid>
 
